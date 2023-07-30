@@ -6,11 +6,11 @@ const patient_reg = (req, res) => {
 
     let details = {
         Patient_name: req.body.Patient_name,
-        Age:req.body.Age,
+        Age: req.body.Age,
         Profession: req.body.Profession,
         Password: Buffer.from(req.body.Password).toString('base64'),
         Phone_no: req.body.Phone_no,
-        A_id:req.body.A_id
+        A_id: req.body.A_id
     }
     patientmodel.patientregister(details, (err, result) => {
         if (err) { res.json({ status: 400, result: err }) }
@@ -23,7 +23,7 @@ let patient_login = (req, res) => {
     var Passwd = Buffer.from(req.body.Password).toString('base64')
     console.log(Passwd)
     let data = {
-        Patient_name : req.body.Patient_name,
+        Patient_name: req.body.Patient_name,
         Password: Passwd
     }
 
@@ -38,23 +38,23 @@ let patient_login = (req, res) => {
 
 }
 
-const patient_bookedappointment = (req,res)=>{
-   
-    patientmodel.Booked_appointment((err,result)=>{
-        if(err){res.json({status:400,result:err})}
-        else{res.json({status:200,result:result})}
-    })    
+const patient_bookedappointment = (req, res) => {
+
+    patientmodel.Booked_appointment((err, result) => {
+        if (err) { res.json({ status: 400, result: err }) }
+        else { res.json({ status: 200, result: result }) }
+    })
 }
 
 
-const patient_getbyid = (req,res)=>{
-    let data={
-        Id:req.params.Id
+const patient_getbyid = (req, res) => {
+    let data = {
+        Id: req.params.Id
     }
-    patientmodel.Bookedappointment_byid(data,(err,result)=>{
-        if(err){res.json({status:400,result:err})}
-        else{res.json({status:200,result:result})}
-    })    
+    patientmodel.Bookedappointment_byid(data, (err, result) => {
+        if (err) { res.json({ status: 400, result: err }) }
+        else { res.json({ status: 200, result: result }) }
+    })
 }
 
-module.exports = { patient_reg, patient_login,patient_bookedappointment,patient_getbyid }
+module.exports = { patient_reg, patient_login, patient_bookedappointment, patient_getbyid }
